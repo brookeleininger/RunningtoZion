@@ -42,15 +42,15 @@ body{
 
 /* Full-page background image overlay */
 body::before{
-  content:'';
-  position:fixed;
-  inset:0;
-  z-index:-1;
-  background:
-    linear-gradient(rgba(30,23,20,.35), rgba(30,23,20,.65)),
-    url('images/zion.jpg') center/cover no-repeat;
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image: url("images/zion.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
-
 /* ===== NAVIGATION ===== */
 .top-nav{
   width:100%;
