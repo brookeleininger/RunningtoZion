@@ -32,7 +32,7 @@ body{
   flex-direction:column;
   align-items:center;
   justify-content:flex-start;
-  background:var(--night);
+  background:transparent;
   color:var(--ink);
   font-family:'Archivo',system-ui,sans-serif;
   line-height:1.5;
@@ -40,17 +40,18 @@ body{
   position:relative;
 }
 
-/* Full-page background image overlay */
+/* Full-page background image */
 body::before{
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  background-image: url("images/zion.jpg");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  background-image:url("images/zion.jpg");
+  background-position:center;
+  background-size:cover;
+  background-repeat:no-repeat;
 }
+
 /* ===== NAVIGATION ===== */
 .top-nav{
   width:100%;
