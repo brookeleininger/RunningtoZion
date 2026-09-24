@@ -1,0 +1,1664 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Running to Zion</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&family=Archivo+Black&family=Fraunces:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+<style>
+/* ===== PALETTE ===== */
+:root{
+  --apricot:#F09367;
+  --blush:#F0A59B;
+  --tulip:#CE5A43;
+  --blood:#AB482D;
+  --cream:#FFF7EE;
+  --card:#FFF1E5;
+  --ink:#2B1A14;
+  --night:#1E1714;
+  --sandstone:#D98E73;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:flex-start;
+  background:var(--night);
+  color:var(--ink);
+  font-family:'Archivo',system-ui,sans-serif;
+  line-height:1.5;
+  padding:24px 16px 40px;
+  position:relative;
+}
+
+/* Full-page background image overlay */
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  background:
+    linear-gradient(rgba(30,23,20,.35), rgba(30,23,20,.65)),
+    url('.images/zion.jpg') center/cover no-repeat;
+}
+
+/* ===== NAVIGATION ===== */
+.top-nav{
+  width:100%;
+  max-width:570px;
+  background:rgba(255,247,238,.96);
+  backdrop-filter:blur(12px);
+  border-radius:18px;
+  padding:14px 24px;
+  margin-bottom:16px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:32px;
+  box-shadow:0 10px 28px rgba(0,0,0,.25);
+}
+
+.top-nav a{
+  color:var(--blood);
+  text-decoration:none;
+  font-weight:800;
+  font-size:.9rem;
+  text-transform:uppercase;
+  letter-spacing:.06em;
+  transition:color .15s ease;
+}
+
+.top-nav a:hover{
+  color:var(--tulip);
+}
+
+/* ===== MAIN CARD ===== */
+main{
+  width:100%;
+  max-width:570px;
+  background:rgba(255,247,238,.96);
+  backdrop-filter:blur(12px);
+  border-radius:28px;
+  padding:40px 32px;
+  box-shadow:
+    0 20px 48px rgba(0,0,0,.35),
+    0 0 0 1px rgba(240,147,103,.2);
+  margin:auto;
+}
+
+h1,h2{
+  font-family:'Fraunces',Georgia,serif;
+  font-weight:600;
+  margin:0;
+}
+
+button{
+  font:inherit;
+  cursor:pointer;
+}
+
+:focus-visible{
+  outline:3px solid var(--blood);
+  outline-offset:2px;
+}
+
+/* ===== HEADER ===== */
+.hero{
+  text-align:center;
+  margin-bottom:24px;
+}
+
+.hero .date{
+  font-size:.95rem;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  font-weight:600;
+  color:var(--blood);
+  opacity:.9;
+}
+
+.hero h1{
+  font-size:2.8rem;
+  line-height:1.1;
+  margin-top:4px;
+  color:var(--blood);
+}
+
+.hero .subtitle{
+  font-family:'Fraunces',Georgia,serif;
+  font-style:italic;
+  font-size:1.1rem;
+  font-weight:400;
+  color:var(--tulip);
+  margin-top:6px;
+  line-height:1.3;
+}
+
+/* ===== COUNTDOWN ===== */
+.count{
+  text-align:center;
+  margin:20px 0 28px;
+  background:linear-gradient(145deg,var(--night),#2E201A);
+  padding:24px 20px 18px;
+  border-radius:22px;
+  border:1px solid rgba(240,147,103,.3);
+  box-shadow:
+    inset 0 2px 4px rgba(255,255,255,.05),
+    0 10px 30px rgba(0,0,0,.3);
+}
+
+.flips-wrapper{
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  gap:12px;
+}
+
+.flip-colon{
+  font-family:'Archivo Black',sans-serif;
+  font-size:2.8rem;
+  color:var(--apricot);
+  line-height:96px;
+  margin:0 2px;
+}
+
+.unit-group{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+.flips{
+  display:inline-flex;
+  gap:6px;
+}
+
+.digit{
+  width:58px;
+  height:82px;
+  background:linear-gradient(180deg,#2B1D18 0%,#150F0D 100%);
+  color:var(--cream);
+  border-radius:12px;
+  display:grid;
+  place-items:center;
+  font-family:'Archivo Black',sans-serif;
+  font-size:3rem;
+  position:relative;
+  box-shadow:
+    0 6px 14px rgba(0,0,0,.5),
+    inset 0 1px 1px rgba(255,255,255,.15);
+  border:1px solid rgba(206,90,67,.3);
+}
+
+.digit::after{
+  content:'';
+  position:absolute;
+  left:0;
+  right:0;
+  top:50%;
+  height:2px;
+  background:rgba(30,23,20,.95);
+  box-shadow:0 1px 0 rgba(255,255,255,.1);
+}
+
+.unit-label{
+  font-size:.75rem;
+  font-weight:800;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--apricot);
+  margin-top:8px;
+}
+
+.quote{
+  font-family:'Fraunces',serif;
+  font-style:italic;
+  font-size:1.45rem;
+  text-align:center;
+  color:var(--tulip);
+  padding:12px;
+  max-width:500px;
+  margin:0 auto 20px;
+  line-height:1.35;
+}
+
+/* ===== BUTTONS ===== */
+.ask{
+  text-align:center;
+  padding:8px 0;
+}
+
+.ask h2{
+  font-size:1.9rem;
+  margin-bottom:16px;
+  color:var(--ink);
+}
+
+.btns{
+  display:flex;
+  gap:14px;
+  justify-content:center;
+}
+
+.btn{
+  border:0;
+  border-radius:999px;
+  padding:14px 40px;
+  font-weight:800;
+  font-size:1.1rem;
+  color:#fff;
+  background:var(--tulip);
+  box-shadow:0 4px 14px rgba(206,90,67,.35);
+  transition:all .15s ease;
+}
+
+.btn:hover{
+  background:var(--blood);
+  transform:translateY(-1px);
+}
+
+.btn.alt{
+  background:transparent;
+  color:var(--blood);
+  border:2px solid var(--tulip);
+  box-shadow:none;
+}
+
+.btn.alt:hover{
+  background:rgba(206,90,67,.08);
+}
+
+.view{
+  display:none;
+}
+
+.view.on{
+  display:block;
+}
+
+/* ===== GENERAL CARDS ===== */
+.card{
+  background:var(--card);
+  border-radius:18px;
+  padding:22px;
+  margin:16px 0;
+  border:1px solid rgba(240,165,155,.3);
+}
+
+label{
+  display:block;
+  font-weight:600;
+  margin:12px 0 4px;
+  color:var(--ink);
+}
+
+input,select,textarea{
+  width:100%;
+  padding:11px;
+  border:2px solid var(--blush);
+  border-radius:10px;
+  background:#fff;
+  font:inherit;
+  color:var(--ink);
+}
+
+.two{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.pace{
+  font-family:'Fraunces',serif;
+  font-size:1.3rem;
+  color:var(--blood);
+  margin:12px 0 0;
+}
+
+.done{
+  background:var(--apricot);
+  color:var(--ink);
+  border-radius:14px;
+  padding:14px;
+  margin-top:14px;
+  font-weight:600;
+}
+
+.back{
+  background:none;
+  border:0;
+  color:var(--blood);
+  font-weight:800;
+  padding:8px 0 16px;
+  font-size:1rem;
+}
+
+/* ===== WEEKLY GOALS ===== */
+.goals-header{
+  text-align:center;
+  margin-bottom:22px;
+}
+
+.goals-header h2{
+  font-size:2rem;
+  color:var(--blood);
+}
+
+.goals-header p{
+  margin:5px 0 0;
+  color:var(--tulip);
+  font-family:'Fraunces',serif;
+  font-style:italic;
+}
+
+.current-week{
+  background:var(--night);
+  color:var(--cream);
+  border-radius:18px;
+  padding:20px;
+  margin-bottom:22px;
+  box-shadow:0 10px 25px rgba(0,0,0,.22);
+}
+
+.current-week-label{
+  display:inline-block;
+  background:var(--apricot);
+  color:var(--ink);
+  border-radius:999px;
+  padding:5px 12px;
+  font-size:.72rem;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  margin-bottom:10px;
+}
+
+.current-week h2{
+  color:var(--cream);
+  font-size:1.65rem;
+}
+
+.current-week .phase{
+  color:var(--blush);
+  font-size:.9rem;
+  margin-top:2px;
+}
+
+.current-total{
+  font-family:'Archivo Black',sans-serif;
+  color:var(--apricot);
+  font-size:2rem;
+  margin:12px 0;
+}
+
+.goal-runs{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+}
+
+.goal-run{
+  background:rgba(255,247,238,.08);
+  border:1px solid rgba(240,165,155,.2);
+  border-radius:12px;
+  padding:10px 8px;
+  text-align:center;
+}
+
+.goal-run span{
+  display:block;
+  color:var(--blush);
+  font-size:.7rem;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.05em;
+}
+
+.goal-run b{
+  display:block;
+  color:var(--cream);
+  font-size:1.05rem;
+  margin-top:3px;
+}
+
+.goal-list{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.week-card{
+  background:var(--card);
+  border:1px solid rgba(240,165,155,.3);
+  border-radius:16px;
+  padding:16px;
+}
+
+.week-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+}
+
+.week-title{
+  font-family:'Fraunces',serif;
+  font-size:1.25rem;
+  color:var(--blood);
+}
+
+.week-phase{
+  font-size:.75rem;
+  color:var(--tulip);
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.05em;
+}
+
+.week-total{
+  font-family:'Archivo Black',sans-serif;
+  color:var(--tulip);
+  font-size:1.1rem;
+  white-space:nowrap;
+}
+
+.week-runs{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:7px;
+  margin-top:11px;
+}
+
+.week-run{
+  background:rgba(255,255,255,.55);
+  border-radius:10px;
+  padding:8px;
+  text-align:center;
+  font-size:.8rem;
+}
+
+.week-run span{
+  display:block;
+  color:var(--blood);
+  font-size:.65rem;
+  font-weight:800;
+  text-transform:uppercase;
+}
+
+.week-run b{
+  display:block;
+  margin-top:2px;
+}
+
+.race-run{
+  background:var(--apricot);
+  color:var(--ink);
+}
+
+/* ===== LOG ===== */
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  text-align:center;
+}
+
+.stats b{
+  display:block;
+  font-family:'Archivo Black',sans-serif;
+  font-size:1.8rem;
+  color:var(--tulip);
+}
+
+.cal{
+  background:var(--night);
+  color:var(--cream);
+  border-radius:18px;
+  padding:18px;
+  border:1px solid rgba(240,147,103,.2);
+}
+
+.calhead{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:12px;
+}
+
+.calhead button{
+  background:none;
+  border:0;
+  color:var(--apricot);
+  font-size:1.5rem;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  gap:4px;
+  text-align:center;
+  font-size:.8rem;
+}
+
+.grid .dow{
+  opacity:.6;
+  font-weight:600;
+}
+
+.grid svg{
+  width:100%;
+  max-width:44px;
+}
+
+.legend{
+  font-size:.8rem;
+  opacity:.8;
+  margin-top:12px;
+  color:var(--blush);
+}
+
+.run{
+  display:flex;
+  justify-content:space-between;
+  gap:8px;
+  padding:12px 0;
+  border-bottom:1px solid var(--blush);
+}
+
+.run small{
+  display:block;
+  color:var(--blood);
+}
+
+.run button{
+  background:none;
+  border:0;
+  color:var(--tulip);
+  font-weight:600;
+}
+
+/* ===== MOBILE ===== */
+@media(max-width:500px){
+  main{
+    padding:28px 18px;
+  }
+
+  .digit{
+    width:40px;
+    height:62px;
+    font-size:2rem;
+    border-radius:8px;
+  }
+
+  .flip-colon{
+    font-size:1.8rem;
+    line-height:62px;
+    margin:0;
+  }
+
+  .flips-wrapper{
+    gap:6px;
+  }
+
+  .hero h1{
+    font-size:2.2rem;
+  }
+
+  .btns{
+    flex-direction:column;
+  }
+
+  .btn{
+    width:100%;
+  }
+
+  .goal-runs,
+  .week-runs{
+    gap:5px;
+  }
+
+  .week-card{
+    padding:13px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ===== NAVIGATION ===== -->
+<nav class="top-nav">
+  <a href="#" onclick="show('home'); return false;">Home</a>
+  <a href="#" onclick="show('goals'); return false;">Goal</a>
+  <a href="#" onclick="show('log'); return false;">Progress</a>
+</nav>
+
+<main>
+
+<header class="hero">
+  <div class="date" id="today"></div>
+  <h1>Running to Zion</h1>
+  <div class="subtitle">Countdown to Zion National Park Half Marathon.</div>
+</header>
+
+<!-- ===== HOME ===== -->
+<section id="home" class="view on">
+
+  <div class="count">
+    <div class="flips-wrapper">
+
+      <div class="unit-group">
+        <div class="flips" id="daysFlips"></div>
+        <span class="unit-label">Days</span>
+      </div>
+
+      <div class="flip-colon">:</div>
+
+      <div class="unit-group">
+        <div class="flips" id="hoursFlips"></div>
+        <span class="unit-label">Hours</span>
+      </div>
+
+      <div class="flip-colon">:</div>
+
+      <div class="unit-group">
+        <div class="flips" id="minsFlips"></div>
+        <span class="unit-label">Mins</span>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="quote" id="quote"></div>
+
+  <div class="ask">
+    <h2>Track progress?</h2>
+
+    <div class="btns">
+      <button class="btn" onclick="show('entry')">Yes</button>
+      <button class="btn alt" onclick="show('log')">No</button>
+    </div>
+  </div>
+
+</section>
+
+
+<!-- ===== WEEKLY GOALS ===== -->
+<section id="goals" class="view">
+
+  <button class="back" onclick="show('home')">&larr; Back</button>
+
+  <div class="goals-header">
+    <h2>Weekly Goals</h2>
+    <p>22 weeks to Zion.</p>
+  </div>
+
+  <!-- Current week gets inserted here automatically -->
+  <div id="currentWeek"></div>
+
+  <!-- All weeks -->
+  <div class="goal-list" id="goalList"></div>
+
+</section>
+
+
+<!-- ===== LOG TODAY'S RUN ===== -->
+<section id="entry" class="view">
+
+  <button class="back" onclick="show('home')">&larr; Back</button>
+
+  <div class="card">
+
+    <h2>Log today's run</h2>
+
+    <div class="two">
+
+      <div>
+        <label for="mi">Distance (miles)</label>
+        <input
+          id="mi"
+          type="number"
+          step="0.01"
+          min="0"
+          inputmode="decimal">
+      </div>
+
+      <div>
+        <label for="tm">Time (mm:ss or h:mm:ss)</label>
+        <input
+          id="tm"
+          placeholder="42:30">
+      </div>
+
+    </div>
+
+    <label for="feel">How did it feel?</label>
+
+    <select id="feel">
+      <option value="1">1 Wrecked</option>
+      <option value="2">2 Tired</option>
+      <option value="3" selected>3 Solid</option>
+      <option value="4">4 Good</option>
+      <option value="5">5 Flying</option>
+    </select>
+
+    <label for="note">Notes (route, weather, anything)</label>
+
+    <textarea id="note" rows="3"></textarea>
+
+    <div class="pace" id="pace">
+      Pace: enter distance and time
+    </div>
+
+    <button
+      class="btn"
+      style="margin-top:16px;width:100%"
+      onclick="saveRun()">
+      Save run
+    </button>
+
+    <div class="done" id="done" hidden></div>
+
+  </div>
+
+</section>
+
+
+<!-- ===== PROGRESS ===== -->
+<section id="log" class="view">
+
+  <button class="back" onclick="show('home')">&larr; Back</button>
+
+  <div class="card stats">
+    <div>
+      <b id="sTot">0</b>
+      total miles
+    </div>
+
+    <div>
+      <b id="sWk">0</b>
+      this week
+    </div>
+
+    <div>
+      <b id="sStreak">0</b>
+      day streak
+    </div>
+  </div>
+
+  <div class="cal">
+
+    <div class="calhead">
+      <button
+        onclick="moveMonth(-1)"
+        aria-label="Previous month">
+        &lsaquo;
+      </button>
+
+      <h2 id="monthName"></h2>
+
+      <button
+        onclick="moveMonth(1)"
+        aria-label="Next month">
+        &rsaquo;
+      </button>
+    </div>
+
+    <div class="grid" id="grid"></div>
+
+    <div class="legend">
+      Outer ring: miles vs goal. Middle: feel. Inner: time on feet.
+    </div>
+
+  </div>
+
+  <div class="card">
+    <h2>All runs</h2>
+    <div id="runs"></div>
+  </div>
+
+</section>
+
+</main>
+
+
+<script>
+
+/* =========================================================
+   CONFIGURATION
+========================================================= */
+
+const RACE_TARGET = new Date('2027-02-27T07:00:00');
+
+const PLAN_START = new Date('2026-09-21T00:00:00');
+
+const DAILY_GOAL_MILES = 3;
+const DAILY_GOAL_MINUTES = 45;
+
+const QUOTES = [
+  "If it was easy, everyone would do it.",
+  "Small miles, big canyon."
+];
+
+const COLORS = {
+  miles:'#CE5A43',
+  feel:'#F0A59B',
+  time:'#F09367'
+};
+
+
+/* =========================================================
+   22-WEEK HALF MARATHON PLAN
+========================================================= */
+
+const trainingPlan = [
+
+  {week:1, phase:'Base', run1:1.5, run2:2, run3:2, total:5.5},
+
+  {week:2, phase:'Base', run1:2, run2:2, run3:2.5, total:6.5},
+
+  {week:3, phase:'Base', run1:2, run2:2.5, run3:3, total:7.5},
+
+  {week:4, phase:'Base', run1:2.5, run2:3, run3:3.5, total:9},
+
+  {week:5, phase:'Building', run1:3, run2:3, run3:4, total:10},
+
+  {week:6, phase:'Building', run1:3, run2:3.5, run3:4.5, total:11},
+
+  {week:7, phase:'Building', run1:3, run2:4, run3:5, total:12},
+
+  {week:8, phase:'Building', run1:3.5, run2:4, run3:5.5, total:13},
+
+  {week:9, phase:'Mid-Distance', run1:3.5, run2:4, run3:6, total:13.5},
+
+  {week:10, phase:'Mid-Distance', run1:4, run2:4.5, run3:6.5, total:15},
+
+  {week:11, phase:'Mid-Distance', run1:4, run2:4.5, run3:7, total:15.5},
+
+  {week:12, phase:'Mid-Distance', run1:4, run2:5, run3:7.5, total:16.5},
+
+  {week:13, phase:'Double Digits', run1:4, run2:5, run3:8, total:17},
+
+  {week:14, phase:'Double Digits', run1:4, run2:5, run3:8.5, total:17.5},
+
+  {week:15, phase:'Double Digits', run1:4, run2:5, run3:9, total:18},
+
+  {week:16, phase:'Double Digits', run1:4, run2:5, run3:10, total:19},
+
+  {week:17, phase:'Peak', run1:4, run2:5, run3:11, total:20},
+
+  {week:18, phase:'Peak', run1:4, run2:5, run3:12, total:21},
+
+  {week:19, phase:'Peak', run1:4, run2:5, run3:12.5, total:21.5},
+
+  {week:20, phase:'Taper', run1:4, run2:4, run3:10, total:18},
+
+  {week:21, phase:'Taper', run1:3, run2:3, run3:6, total:12},
+
+  {
+    week:22,
+    phase:'Race Week',
+    run1:3,
+    run2:2,
+    run3:13.1,
+    shakeout:1.5,
+    total:19.6
+  }
+
+];
+
+
+/* =========================================================
+   STORAGE
+========================================================= */
+
+let runs = [];
+
+try {
+  runs = JSON.parse(localStorage.getItem('zionRuns') || '[]');
+} catch(e){}
+
+const persist = () => {
+  try {
+    localStorage.setItem('zionRuns', JSON.stringify(runs));
+  } catch(e){}
+};
+
+const $ = id => document.getElementById(id);
+
+const dstr = d =>
+  d.getFullYear() +
+  '-' +
+  String(d.getMonth()+1).padStart(2,'0') +
+  '-' +
+  String(d.getDate()).padStart(2,'0');
+
+const parseD = s => {
+  const [y,m,d] = s.split('-');
+  return new Date(+y,m-1,+d);
+};
+
+
+/* =========================================================
+   DETERMINE CURRENT TRAINING WEEK
+========================================================= */
+
+function getCurrentWeek(){
+
+  const now = new Date();
+
+  const start = new Date(PLAN_START);
+  start.setHours(0,0,0,0);
+
+  const current = new Date(now);
+  current.setHours(0,0,0,0);
+
+  const difference =
+    Math.floor((current - start) / (1000 * 60 * 60 * 24));
+
+  const week = Math.floor(difference / 7) + 1;
+
+  return Math.min(Math.max(week,1),22);
+}
+
+
+/* =========================================================
+   RENDER WEEKLY GOALS
+========================================================= */
+
+function renderGoals(){
+
+  const currentWeek = getCurrentWeek();
+
+  const current = trainingPlan[currentWeek - 1];
+
+  /* ----- CURRENT WEEK ----- */
+
+  let currentRuns = `
+    <div class="goal-run">
+      <span>Run 1</span>
+      <b>${current.run1} mi</b>
+    </div>
+
+    <div class="goal-run">
+      <span>Run 2</span>
+      <b>${current.run2} mi</b>
+    </div>
+
+    <div class="goal-run">
+      <span>Run 3</span>
+      <b>${current.run3} mi</b>
+    </div>
+  `;
+
+  if(current.shakeout){
+    currentRuns += `
+      <div class="goal-run">
+        <span>Shakeout</span>
+        <b>${current.shakeout} mi</b>
+      </div>
+    `;
+  }
+
+  $('currentWeek').innerHTML = `
+
+    <div class="current-week">
+
+      <div class="current-week-label">
+        Current Week
+      </div>
+
+      <h2>
+        Week ${current.week} · ${current.phase}
+      </h2>
+
+      <div class="current-total">
+        ${current.total} miles
+      </div>
+
+      <div class="goal-runs">
+        ${currentRuns}
+      </div>
+
+    </div>
+
+  `;
+
+
+  /* ----- ALL WEEKS ----- */
+
+  $('goalList').innerHTML = trainingPlan.map(plan => {
+
+    const isCurrent = plan.week === currentWeek;
+
+    let run3Label = 'Run 3';
+    let run3Class = '';
+
+    if(plan.week === 22){
+      run3Label = 'Race';
+      run3Class = 'race-run';
+    }
+
+    let extra = '';
+
+    if(plan.shakeout){
+      extra = `
+        <div class="week-run">
+          <span>Shakeout</span>
+          <b>${plan.shakeout} mi</b>
+        </div>
+      `;
+    }
+
+    return `
+
+      <div
+        class="week-card"
+        ${isCurrent ? 'style="border:2px solid var(--apricot);"' : ''}>
+
+        <div class="week-top">
+
+          <div>
+
+            <div class="week-title">
+              Week ${plan.week}
+            </div>
+
+            <div class="week-phase">
+              ${plan.phase}
+            </div>
+
+          </div>
+
+          <div class="week-total">
+            ${plan.total} mi
+          </div>
+
+        </div>
+
+        <div class="week-runs">
+
+          <div class="week-run">
+            <span>Run 1</span>
+            <b>${plan.run1} mi</b>
+          </div>
+
+          <div class="week-run">
+            <span>Run 2</span>
+            <b>${plan.run2} mi</b>
+          </div>
+
+          <div class="week-run ${run3Class}">
+            <span>${run3Label}</span>
+            <b>${plan.run3} mi</b>
+          </div>
+
+          ${extra}
+
+        </div>
+
+      </div>
+
+    `;
+
+  }).join('');
+
+}
+
+
+/* =========================================================
+   HOME & COUNTDOWN
+========================================================= */
+
+$('today').textContent =
+  new Date().toLocaleDateString(
+    undefined,
+    {
+      weekday:'long',
+      month:'long',
+      day:'numeric',
+      year:'numeric'
+    }
+  );
+
+
+function renderDigits(containerId,value,padLength=2){
+
+  const str =
+    String(Math.max(0,value))
+    .padStart(padLength,'0');
+
+  $(containerId).innerHTML =
+    str
+    .split('')
+    .map(c => `<div class="digit">${c}</div>`)
+    .join('');
+}
+
+
+function updateCountdown(){
+
+  const now = new Date();
+
+  const diff = RACE_TARGET - now;
+
+  if(diff <= 0){
+
+    renderDigits('daysFlips',0,3);
+    renderDigits('hoursFlips',0,2);
+    renderDigits('minsFlips',0,2);
+
+    return;
+  }
+
+  const days =
+    Math.floor(
+      diff /
+      (1000 * 60 * 60 * 24)
+    );
+
+  const hours =
+    Math.floor(
+      (diff /
+      (1000 * 60 * 60)) % 24
+    );
+
+  const mins =
+    Math.floor(
+      (diff / 1000 / 60) % 60
+    );
+
+  renderDigits('daysFlips',days,3);
+  renderDigits('hoursFlips',hours,2);
+  renderDigits('minsFlips',mins,2);
+}
+
+updateCountdown();
+
+setInterval(updateCountdown,30000);
+
+
+const doy =
+  Math.floor(
+    (new Date() -
+    new Date(new Date().getFullYear(),0,0))
+    / 864e5
+  );
+
+$('quote').textContent =
+  QUOTES[doy % QUOTES.length];
+
+
+/* =========================================================
+   PAGE NAVIGATION
+========================================================= */
+
+function show(id){
+
+  document
+    .querySelectorAll('.view')
+    .forEach(v =>
+      v.classList.toggle(
+        'on',
+        v.id === id
+      )
+    );
+
+  if(id === 'log'){
+    renderLog();
+  }
+
+  if(id === 'goals'){
+    renderGoals();
+  }
+
+  if(id === 'entry'){
+    $('done').hidden = true;
+  }
+
+  window.scrollTo(0,0);
+}
+
+
+/* =========================================================
+   ENTRY
+========================================================= */
+
+function parseTime(t){
+
+  if(!t || !t.trim()) return null;
+
+  const p =
+    t.trim()
+    .split(':')
+    .map(Number);
+
+  if(p.some(isNaN)) return null;
+
+  if(p.length === 2)
+    return p[0] + p[1]/60;
+
+  if(p.length === 3)
+    return p[0]*60 + p[1] + p[2]/60;
+
+  return null;
+}
+
+
+const fmtPace = m => {
+
+  if(isNaN(m) || !isFinite(m))
+    return '0:00';
+
+  const s = Math.round(m * 60);
+
+  return Math.floor(s/60) +
+    ':' +
+    String(s%60).padStart(2,'0');
+};
+
+
+const fmtDuration = mins => {
+
+  const totalSec =
+    Math.round(mins * 60);
+
+  const h =
+    Math.floor(totalSec / 3600);
+
+  const m =
+    Math.floor((totalSec % 3600) / 60);
+
+  const s =
+    totalSec % 60;
+
+  if(h > 0)
+    return `${h}h ${m}m ${s}s`;
+
+  return `${m}m ${String(s).padStart(2,'0')}s`;
+};
+
+
+function updatePace(){
+
+  const d = +$('mi').value;
+
+  const t = parseTime(
+    $('tm').value
+  );
+
+  $('pace').textContent =
+    (d > 0 && t)
+      ? `Pace: ${fmtPace(t/d)} per mile`
+      : 'Pace: enter distance and time';
+}
+
+$('mi').addEventListener(
+  'input',
+  updatePace
+);
+
+$('tm').addEventListener(
+  'input',
+  updatePace
+);
+
+
+const CHEERS = [
+  "Another layer of sandstone laid down.",
+  "That's one more mile between you and Zion.",
+  "Logged. Your future self says thanks.",
+  "Canyon-carving consistency."
+];
+
+
+function saveRun(){
+
+  const d = +$('mi').value;
+
+  const t =
+    parseTime($('tm').value);
+
+  if(!(d > 0) || !t){
+
+    alert(
+      'Enter a valid distance and time (e.g. 42:30).'
+    );
+
+    return;
+  }
+
+  runs.push({
+    id:Date.now(),
+    date:dstr(new Date()),
+    miles:d,
+    mins:t,
+    feel:+$('feel').value,
+    note:$('note').value.trim()
+  });
+
+  persist();
+
+  $('done').hidden = false;
+
+  $('done').textContent =
+    CHEERS[runs.length % CHEERS.length] +
+    ` ${d} mi at ${fmtPace(t/d)} pace.`;
+
+  $('mi').value = '';
+  $('tm').value = '';
+  $('note').value = '';
+
+  updatePace();
+}
+
+
+/* =========================================================
+   LOG
+========================================================= */
+
+let viewMonth = new Date();
+
+viewMonth.setDate(1);
+
+
+function moveMonth(n){
+
+  viewMonth.setMonth(
+    viewMonth.getMonth() + n
+  );
+
+  renderLog();
+}
+
+
+function ring(m,f,t){
+
+  const R = [17,12,7];
+
+  const C = r =>
+    2 * Math.PI * r;
+
+  const arc = (r,frac,col) =>
+
+    `<circle
+      cx="21"
+      cy="21"
+      r="${r}"
+      fill="none"
+      stroke="${col}"
+      stroke-opacity=".2"
+      stroke-width="4"/>`
+
+    +
+
+    (frac > 0
+
+      ?
+
+      `<circle
+        cx="21"
+        cy="21"
+        r="${r}"
+        fill="none"
+        stroke="${col}"
+        stroke-width="4"
+        stroke-linecap="round"
+        stroke-dasharray="${C(r)*Math.min(frac,1)} ${C(r)}"
+        transform="rotate(-90 21 21)"/>`
+
+      :
+
+      '');
+
+  return `
+    <svg viewBox="0 0 42 42">
+      ${arc(R[0],m/DAILY_GOAL_MILES,COLORS.miles)}
+      ${arc(R[1],f/5,COLORS.feel)}
+      ${arc(R[2],t/DAILY_GOAL_MINUTES,COLORS.time)}
+    </svg>
+  `;
+}
+
+
+function streak(){
+
+  const days =
+    new Set(
+      runs.map(r => r.date)
+    );
+
+  let c = 0;
+
+  let d = new Date();
+
+  if(!days.has(dstr(d)))
+    d.setDate(d.getDate()-1);
+
+  while(days.has(dstr(d))){
+
+    c++;
+
+    d.setDate(
+      d.getDate()-1
+    );
+  }
+
+  return c;
+}
+
+
+function renderLog(){
+
+  const tot =
+    runs.reduce(
+      (a,r) => a + r.miles,
+      0
+    );
+
+  const now = new Date();
+
+  const mon =
+    new Date(now);
+
+  mon.setDate(
+    now.getDate() -
+    ((now.getDay()+6)%7)
+  );
+
+  mon.setHours(0,0,0,0);
+
+  const wk =
+    runs
+      .filter(
+        r => parseD(r.date) >= mon
+      )
+      .reduce(
+        (a,r) => a + r.miles,
+        0
+      );
+
+  $('sTot').textContent =
+    tot.toFixed(1);
+
+  $('sWk').textContent =
+    wk.toFixed(1);
+
+  $('sStreak').textContent =
+    streak();
+
+
+  const y =
+    viewMonth.getFullYear();
+
+  const mo =
+    viewMonth.getMonth();
+
+  $('monthName').textContent =
+    viewMonth.toLocaleDateString(
+      undefined,
+      {
+        month:'long',
+        year:'numeric'
+      }
+    );
+
+
+  let html =
+    ['M','T','W','T','F','S','S']
+      .map(
+        x =>
+          `<div class="dow">${x}</div>`
+      )
+      .join('');
+
+  html +=
+    '<div></div>'.repeat(
+      (new Date(y,mo,1).getDay()+6)%7
+    );
+
+
+  for(
+    let d=1;
+    d<=new Date(y,mo+1,0).getDate();
+    d++
+  ){
+
+    const key =
+      dstr(new Date(y,mo,d));
+
+    const day =
+      runs.filter(
+        r => r.date === key
+      );
+
+    const m =
+      day.reduce(
+        (a,r) => a+r.miles,
+        0
+      );
+
+    const t =
+      day.reduce(
+        (a,r) => a+r.mins,
+        0
+      );
+
+    const f =
+      day.length
+        ?
+        day.reduce(
+          (a,r) => a+r.feel,
+          0
+        ) / day.length
+        :
+        0;
+
+    html += `
+      <div>
+        ${ring(m,f,t)}
+        <div>${d}</div>
+      </div>
+    `;
+  }
+
+  $('grid').innerHTML = html;
+
+
+  $('runs').innerHTML =
+    runs.length
+
+      ?
+
+      runs
+        .slice()
+        .sort(
+          (a,b) =>
+            b.date.localeCompare(a.date) ||
+            b.id-a.id
+        )
+        .map(r =>
+
+          `<div class="run">
+
+            <div>
+
+              <b>
+                ${
+                  parseD(r.date)
+                  .toLocaleDateString(
+                    undefined,
+                    {
+                      month:'short',
+                      day:'numeric'
+                    }
+                  )
+                }
+              </b>
+
+              &middot;
+              ${r.miles} mi in
+              ${fmtDuration(r.mins)}
+
+              <small>
+                ${fmtPace(r.mins/r.miles)}/mi
+                &middot;
+                feel ${r.feel}/5
+                ${
+                  r.note
+                    ?
+                    ' &middot; ' +
+                    r.note.replace(/</g,'&lt;')
+                    :
+                    ''
+                }
+              </small>
+
+            </div>
+
+            <button
+              onclick="delRun(${r.id})"
+              aria-label="Delete run">
+              Delete
+            </button>
+
+          </div>`
+
+        )
+        .join('')
+
+      :
+
+      '<p>No runs yet. Your first ring is one lap away.</p>';
+}
+
+
+function delRun(id){
+
+  if(confirm('Delete this run?')){
+
+    runs =
+      runs.filter(
+        r => r.id !== id
+      );
+
+    persist();
+
+    renderLog();
+  }
+}
+
+</script>
+
+</body>
+</html>
+```
